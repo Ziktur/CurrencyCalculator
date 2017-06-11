@@ -1,0 +1,7 @@
+﻿@model CurrencyCalculator.Models.DataToConvert
+@{
+    ViewBag.Title = "Результат";
+    Layout = "~/Views/Home/Converter.cshtml";
+}
+@Html.Label(ViewBag.result as string)
+@Html.Label(ViewBag.currency as string)

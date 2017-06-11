@@ -1,0 +1,38 @@
+﻿@model CurrencyCalculator.Models.DataToConvert
+@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("RubToVal", "Home", FormMethod.Get))
+{
+    @Html.Label("Перевод рублей в валюту");
+    <br />
+    @Html.LabelFor(m => m.Currency);
+    <br />
+    @Html.DropDownListFor(m => m.Currency, ViewBag.currencyList as SelectList);
+    <br />
+    @Html.LabelFor(m => m.SummInRub);
+    <br />
+    @Html.TextBoxFor(m => m.SummInRub);
+    @Html.ValidationMessageFor(m => m.SummInRub);
+    <br />
+    <input type="submit" value="Перевести" />
+}
+<br />
+@using (Html.BeginForm("ValToRub", "Home", FormMethod.Get))
+{
+    @Html.Label("Перевод валюты в рубли");
+    <br />
+    @Html.LabelFor(m => m.Currency);
+    <br />
+    @Html.DropDownListFor(m => m.Currency, ViewBag.currencyList as SelectList);
+    <br />
+    @Html.LabelFor(m => m.SummInVal);
+    <br />
+    @Html.TextBoxFor(m => m.SummInVal);
+    @Html.ValidationMessageFor(m => m.SummInVal);
+    <br />
+    <input type="submit" value="Перевести" />
+}
+<br />
+@RenderBody()
