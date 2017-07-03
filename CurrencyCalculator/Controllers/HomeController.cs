@@ -14,8 +14,11 @@ namespace CurrencyCalculator.Controllers
         float GetCourse(string currency)
         {
             WebRequest request = WebRequest.Create("http://www.cbr.ru/scripts/XML_daily.asp");
-            WebResponse response = request.GetResponse();
-            XDocument xDoc = XDocument.Load(response.GetResponseStream());
+            XDocument xDoc;
+            using (WebResponse response = request.GetResponse())
+            {
+                xDoc = XDocument.Load(response.GetResponseStream());
+            }
             var currencyNode = (from node in xDoc.Element("ValCurs").Elements("Valute")
                                 where node.Element("CharCode").Value == currency
                                 select node).First();
